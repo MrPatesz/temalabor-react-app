@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM, { unstable_renderSubtreeIntoContainer } from 'react-dom';
+import ReactDOM/*, { unstable_renderSubtreeIntoContainer }*/ from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Song from './Song.js';
