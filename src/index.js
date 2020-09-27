@@ -4,7 +4,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Song from './Song.js';
 import Artist from './Artist';
-import SongList from './Artist';
+import Playlist from './Playlist';
 
 // #region Creating Songs
 var song1 = new Song(
@@ -34,24 +34,25 @@ const Mock = () => {
   );
 }
 
-var songList = new SongList([song1, song2, song3]);
-
-ReactDOM.render(
-  <React.StrictMode>
-    <songList />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-
-//songList.addSong(song1);
-//songList.addSong(song2);
-//songList.addSong(song3);
-
 ReactDOM.render(
   <React.StrictMode>
     <Mock />
   </React.StrictMode>,
+  document.getElementById('root')
+);
+
+var playlist1 = new Playlist("Cool Mixtape", "Good Songs");
+playlist1.addSong(song1);
+playlist1.addSong(song2);
+playlist1.addSong(song3);
+
+ReactDOM.render(
+  <div>
+      <h1> {playlist1.name} </h1>
+      <ul>
+          {playlist1.getListOfSongs()}
+      </ul>
+  </div>,
   document.getElementById('root2')
 );
 
