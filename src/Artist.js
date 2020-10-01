@@ -1,9 +1,9 @@
-
 class Artist {
-    constructor(name, url){
-        this.name = name;
-        this.url = url;
-    }
+  constructor(name, albums = null) {
+    this.name = name;
+    this.albums = albums;
+    //this.url = url;
+  }
 }
 
 export default Artist;

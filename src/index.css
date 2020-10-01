@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.big-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.genre-div {
+  float: left;
+  width: 25%;
+}
+
+.artist-div {
+  float: left;
+  width: 25%;
+}
+
+.album-div {
+  float: left;
+  width: 25%;
+}
+
+.selection-div {
+  float: left;
+  width: 25%;
+}
