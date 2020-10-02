@@ -36,3 +36,23 @@ code {
   float: left;
   width: 25%;
 }
+
+.menu-div {
+  display: flex;
+  flex-direction: row;
+}
+
+.home-page {
+  float: left;
+  width: 10%;
+}
+
+.playlist-page {
+  float: left;
+  width: 10%;
+}
+
+.add-song-page {
+  float: left;
+  width: 10%;
+}
