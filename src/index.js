@@ -54,14 +54,17 @@ ReactDOM.render(
       <h1> Albums </h1>
       <ul>
         {mock.artists.map((artist) => (
-          <li>
-            {artist.name}
-            <ul>
-              {artist.albums.map((album) => (
-                <li>{album.title}</li>
-              ))}
-            </ul>
-          </li>
+          <div>
+            {artist.albums.map((album) => (
+              <li
+                onClick={() => {
+                  console.log(album.title);
+                }}
+              >
+                {album.title}
+              </li>
+            ))}
+          </div>
         ))}
       </ul>
     </div>
@@ -79,3 +82,21 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.register();
+
+/*
+    <div className="album-div">
+      <h1> Albums </h1>
+      <ul>
+        {mock.artists.map((artist) => (
+          <li>
+            {artist.name}
+            <ul>
+              {artist.albums.map((album) => (
+                <li>{album.title}</li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
+    </div>
+*/
