@@ -1,6 +1,6 @@
-import Song from "./Song";
-import Artist from "./Artist";
-import Album from "./Album";
+import Song from "./DataClasses/Song";
+import Artist from "./DataClasses/Artist";
+import Album from "./DataClasses/Album";
 
 class Mock {
   constructor() {
