@@ -19,10 +19,13 @@ class Mock {
         new Album("Bad Vibes Forever", "Hip-hop", [
           new Song("XXXTENTACION", "Train Food"),
         ]),
+        new Album("The Fall", "Hip-hop", [
+          new Song("XXXTENTACION", "Never"),
+        ]),
       ]),
       new Artist("A$AP Rocky", [
         new Album("TESTING", "Hip-hop", [
-          new Song("A$AP Rocky", "Changes")
+          new Song("A$AP Rocky", "Changes"),
         ]),
       ]),
     ];
