@@ -3,7 +3,7 @@ import ReactDOM /*, { unstable_renderSubtreeIntoContainer }*/ from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import HomePage from "./Pages/Home_page";
+import HomePage from "./Pages/HomePage";
 
 ReactDOM.render(
   <Router>
@@ -12,20 +12,20 @@ ReactDOM.render(
         <Link to="/">Home</Link>
       </div>
       <div className="playlist-page">
-        <Link to="/Playlist">Playlist</Link>
+        <Link to="/playlist">Playlist</Link>
       </div>
       <div classNam="add-song-page">
-        <Link to="/Add Song">Add Song</Link>
+        <Link to="/add-song">Add Song</Link>
       </div>
     </div>
     <Switch>
       <Route exact path="/">
         <HomePage />
       </Route>
-      <Route path="/Playlist">
+      <Route path="/playlist">
         Show this on Playlist page
       </Route>
-      <Route path="/Add Song">
+      <Route path="/add-song">
         Show this on Add Song page
       </Route>
     </Switch>
