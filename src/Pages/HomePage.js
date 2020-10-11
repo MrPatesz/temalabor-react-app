@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import Mock from "../Mock";
-import AlbumComponent from "../Components/AlbumComponent";
-import ArtistComponent from "../Components/ArtistComponent";
+import ArtistListComponent from "../Components/ArtistListComponent";
 import SelectionComponent from "../Components/SelectionComponent";
+import AlbumListComponent from "../Components/AlbumListComponent"
+import GenreListComponent from "../Components/GenreListComponent"
 
 function HomePage() {
   var mock = new Mock();
 
+  const [selectedGenre, setSelectedGenre] = useState(null);
   const [selectedArtist, setSelectedArtist] = useState(null);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
 
   let selectedItems = {
+    selectedGenre,
+    setSelectedGenre,
     selectedArtist,
     setSelectedArtist,
     selectedAlbum,
@@ -21,47 +25,15 @@ function HomePage() {
     <div className="big-container">
       <div className="genre-div">
         <h1> Genres </h1>
-        <ul>
-          {mock.artists.map((artist) => (
-            <div>
-              {artist.albums.map((album) => (
-                <li>{album.genre}</li>
-              ))}
-            </div>
-          ))}
-        </ul>
+        <GenreListComponent mock={mock} selectedItems={selectedItems} />
       </div>
       <div className="artist-div">
         <h1> Artists </h1>
-        <ul>
-          {mock.artists.map((artist) => (
-            <li>
-              <ArtistComponent artist={artist} selectedItems={selectedItems} />
-            </li>
-          ))}
-        </ul>
+        <ArtistListComponent mock={mock} selectedItems={selectedItems} />
       </div>
       <div className="album-div">
         <h1> Albums </h1>
-        <ul>
-          {mock.artists
-            .filter((artist) => {
-              if (selectedItems.selectedArtist === null) return true;
-              return artist.name === selectedItems.selectedArtist;
-            })
-            .map((artist) => (
-              <div>
-                {artist.albums.map((album) => (
-                  <li>
-                    <AlbumComponent
-                      album={album}
-                      selectedItems={selectedItems}
-                    />
-                  </li>
-                ))}
-              </div>
-            ))}
-        </ul>
+        <AlbumListComponent mock={mock} selectedItems={selectedItems} />
       </div>
       <div className="selection-div">
         <h1> Selection </h1>
