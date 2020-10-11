@@ -1,28 +1,35 @@
 import React from "react";
 
 function SelectionComponent(props) {
-  //let filterFunction = true;
-  //if(artist.name === props.selectedItems.selectedArtist)
   return (
     <ul>
-      {props.mock.artists
-        .filter((artist) => {
-          if (props.selectedItems.selectedArtist === null) return true;
-          return artist.name === props.selectedItems.selectedArtist;
+      {props.mock.genres
+        .filter((genre) => {
+          if (props.selectedItems.selectedGenre === null) return true;
+          return genre.name === props.selectedItems.selectedGenre;
         })
-        .map((artist) => (
+        .map((genre) => (
           <div>
-            {artist.albums
-              .filter((album) => {
-                if (props.selectedItems.selectedAlbum === null) return true;
-                return album.title === props.selectedItems.selectedAlbum;
+            {genre.artists
+              .filter((artist) => {
+                if (props.selectedItems.selectedArtist === null) return true;
+                return artist.name === props.selectedItems.selectedArtist;
               })
-              .map((album) => (
+              .map((artist) => (
                 <div>
-                  {album.songs.map((song) => (
+                  {artist.albums
+                  .filter((album) => {
+                    if (props.selectedItems.selectedAlbum === null) return true;
+                    return album.title === props.selectedItems.selectedAlbum;
+                  })
+                  .map((album) => (
+                    <div>
+                    {album.songs.map((song) => (
                     <li>
                       {song.artist} - {song.title}
                     </li>
+                  ))}
+                </div>
                   ))}
                 </div>
               ))}

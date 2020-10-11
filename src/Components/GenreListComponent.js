@@ -1,14 +1,13 @@
 import React from "react";
+import GenreComponent from "./BasicComponents/GenreComponent";
 
 function GenreListComponent(props) {
   return (
     <ul>
-      {props.mock.artists.map((artist) => (
-        <div>
-          {artist.albums.map((album) => (
-            <li>{album.genre}</li>
-          ))}
-        </div>
+      {props.mock.genres.map((genre) => (
+        <li>
+          <GenreComponent genre={genre} selectedItems={props.selectedItems} />
+        </li>
       ))}
     </ul>
   );
