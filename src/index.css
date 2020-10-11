@@ -56,3 +56,7 @@ code {
   float: left;
   width: 10%;
 }
+
+.selected-list-item {
+  background-color: teal
+}
