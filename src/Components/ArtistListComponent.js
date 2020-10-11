@@ -10,10 +10,10 @@ function ArtistListComponent(props) {
           props.selectedItems.setSelectedAlbum(null);
         }}
         className={
-            props.selectedItems.selectedArtist === null
-              ? "selected-list-item"
-              : "not-selected-list-item"
-          }
+          props.selectedItems.selectedArtist === null
+            ? "selected-list-item"
+            : "not-selected-list-item"
+        }
       >
         All
       </li>
@@ -26,11 +26,11 @@ function ArtistListComponent(props) {
           <div>
             {genre.artists.map((artist) => (
               <li
-              className={
-                props.selectedItems.selectedArtist === artist.name
-                  ? "selected-list-item"
-                  : "not-selected-list-item"
-              }
+                className={
+                  props.selectedItems.selectedArtist === artist.name
+                    ? "selected-list-item"
+                    : "not-selected-list-item"
+                }
               >
                 <ArtistComponent
                   artist={artist}
