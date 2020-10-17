@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import Mock from "../Mock";
 import ArtistListComponent from "../Components/ArtistListComponent";
 import SelectionComponent from "../Components/SelectionComponent";
-import AlbumListComponent from "../Components/AlbumListComponent"
-import GenreListComponent from "../Components/GenreListComponent"
+import AlbumListComponent from "../Components/AlbumListComponent";
+import GenreListComponent from "../Components/GenreListComponent";
 
-function HomePage() {
-  var mock = new Mock();
+function HomePage(props) {
+  var mock = props.mock;
 
   const [selectedGenre, setSelectedGenre] = useState(null);
   const [selectedArtist, setSelectedArtist] = useState(null);

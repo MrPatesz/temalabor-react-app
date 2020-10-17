@@ -4,6 +4,10 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
+import AddSongPage from "./Pages/AddSongPage";
+import Mock from "./Mock";
+
+var mock = new Mock();
 
 ReactDOM.render(
   <Router>
@@ -14,19 +18,19 @@ ReactDOM.render(
       <div className="playlist-page">
         <Link to="/playlist">Playlist</Link>
       </div>
-      <div classNam="add-song-page">
-        <Link to="/add-song">Add Song</Link>
+      <div classNam="add-songs-page">
+        <Link to="/add-songs">Add Songs</Link>
       </div>
     </div>
     <Switch>
       <Route exact path="/">
-        <HomePage />
+        <HomePage mock={mock}/>
       </Route>
       <Route path="/playlist">
         Show this on Playlist page
       </Route>
-      <Route path="/add-song">
-        Show this on Add Song page
+      <Route path="/add-songs">
+        <AddSongPage mock={mock}/>
       </Route>
     </Switch>
   </Router>,

@@ -5,6 +5,13 @@ class Song {
     this.url = url;
     this.features = features;
   }
+
+  isSameSong(song) {
+    if (song.title === this.title)
+      return true;
+    else
+      return false;
+  }
 }
 
 export default Song;
