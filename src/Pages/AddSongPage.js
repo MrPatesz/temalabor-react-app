@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import EditableComponent from "../Components/BasicComponents/EditableComponent";
+//import EditableComponent from "../Components/BasicComponents/EditableComponent";
 import Album from "../DataClasses/Album";
 import Artist from "../DataClasses/Artist";
 import Genre from "../DataClasses/Genre";

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Mock from "../Mock";
 import ArtistListComponent from "../Components/ArtistListComponent";
 import SelectionComponent from "../Components/SelectionComponent";
 import AlbumListComponent from "../Components/AlbumListComponent";
