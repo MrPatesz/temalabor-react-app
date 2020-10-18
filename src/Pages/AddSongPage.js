@@ -71,35 +71,4 @@ export default AddSongPage;
         >
           Add Song
         </div>
-
-        ////////////////////////////
-        working:
-        <div>
-      <div className="big-container">
-        <div className="genre-div">
-          <h1> Genre: </h1>
-          <input type="text" value={genre} onChange={(e) => genreChange(e)} />
-          <EditableComponent content="editable" setter={setGenre}/>
-        </div>
-        <div className="artist-div">
-          <h1> Artist: </h1>
-          <input type="text" value={artist} onChange={(e) => artistChange(e)} />
-        </div>
-        <div className="album-div">
-          <h1> Album: </h1>
-          <input type="text" value={album} onChange={(e) => albumChange(e)} />
-        </div>
-        <div className="selection-div">
-          <h1> Songs: </h1>
-          <input type="text" value={song} onChange={(e) => songChange(e)} />
-        </div>
-      </div>
-      <h1
-        onClick={() => {
-          props.mock.addMusic(makeGenre());
-        }}
-      >
-        Add Song
-      </h1>
-    </div>
 */
