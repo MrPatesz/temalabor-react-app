@@ -5,14 +5,11 @@ function EditableComponent(props) {
 
   function contentChange(e) {
     setContent(e.target.value);
+    props.setter(e.target.value);
   }
 
   return (
-    <input
-          type="text"
-          value={content}
-          onChange={(e) => contentChange(e)}
-        />
+    <input type="text" value={content} onChange={(e) => contentChange(e)} />
   );
 }
 

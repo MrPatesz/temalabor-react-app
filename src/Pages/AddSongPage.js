@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//import EditableComponent from "../Components/BasicComponents/EditableComponent";
+import EditableComponent from "../Components/BasicComponents/EditableComponent";
 import Album from "../DataClasses/Album";
 import Artist from "../DataClasses/Artist";
 import Genre from "../DataClasses/Genre";
@@ -12,19 +12,6 @@ function AddSongPage(props) {
   //const [numOfSongs, setNumOfSongs] = useState(5);
   //const [songArray, setSongArray] = useState(Array(5));
   const [song, setSong] = useState("Title of Song");
-
-  function genreChange(e) {
-    setGenre(e.target.value);
-  }
-  function artistChange(e) {
-    setArtist(e.target.value);
-  }
-  function albumChange(e) {
-    setAlbum(e.target.value);
-  }
-  function songChange(e) {
-    setSong(e.target.value);
-  }
 
   function makeGenre() {
     var g = new Genre(genre, [
@@ -42,7 +29,57 @@ function AddSongPage(props) {
       <div className="big-container">
         <div className="genre-div">
           <h1> Genre: </h1>
+          <EditableComponent content={genre} setter={setGenre}/>
+        </div>
+        <div className="artist-div">
+          <h1> Artist: </h1>
+          <EditableComponent content={artist} setter={setArtist}/>
+        </div>
+        <div className="album-div">
+          <h1> Album: </h1>
+          <EditableComponent content={album} setter={setAlbum}/>
+        </div>
+        <div className="selection-div">
+          <h1> Songs: </h1>
+          <EditableComponent content={song} setter={setSong}/>
+        </div>
+      </div>
+      <h1
+        onClick={() => {
+          props.mock.addMusic(makeGenre());
+        }}
+      >
+        Add Song
+      </h1>
+    </div>
+  );
+}
+
+export default AddSongPage;
+
+/*
+        {numOfSongs.forEach((element) => (
+          <li>
+            <EditableComponent content="{element}" />
+          </li>
+        ))}
+
+        <div
+          onClick={() => {
+            setNumOfSongs(numOfSongs + 1);
+          }}
+        >
+          Add Song
+        </div>
+
+        ////////////////////////////
+        working:
+        <div>
+      <div className="big-container">
+        <div className="genre-div">
+          <h1> Genre: </h1>
           <input type="text" value={genre} onChange={(e) => genreChange(e)} />
+          <EditableComponent content="editable" setter={setGenre}/>
         </div>
         <div className="artist-div">
           <h1> Artist: </h1>
@@ -65,23 +102,4 @@ function AddSongPage(props) {
         Add Song
       </h1>
     </div>
-  );
-}
-
-export default AddSongPage;
-
-/*
-        {numOfSongs.forEach((element) => (
-            <li>
-              <EditableComponent content="{element}" />
-            </li>
-          ))}
-
-          <div
-          onClick={() => {
-            setNumOfSongs(numOfSongs + 1);
-          }}
-        >
-          Add Song
-        </div>
 */
