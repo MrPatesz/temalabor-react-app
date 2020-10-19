@@ -9,19 +9,29 @@ function AddSongPage(props) {
   const [genre, setGenre] = useState("Name of Genre");
   const [artist, setArtist] = useState("Name of Artist");
   const [album, setAlbum] = useState("Title of Album");
-  //const [numOfSongs, setNumOfSongs] = useState(5);
-  //const [songArray, setSongArray] = useState(Array(5));
-  const [song, setSong] = useState("Title of Song");
+  const [songArray, setSongArray] = useState(["Title of Song"]);
+
+  let firstEditableSong = <EditableComponent content={"Title of Song"} setter={addSongSetter} index={0}/>;
+  const [editableSongs, setEditableSongs] = useState([firstEditableSong]);
 
   function makeGenre() {
     var g = new Genre(genre, [
-        new Artist(artist, [
-            new Album(album, genre, [
-                new Song(artist, song)
-            ])
-        ])
+      new Artist(artist, [new Album(album, genre, songArray.map(
+        (song) => (
+          new Song(artist, song)
+        )
+      ))]),
     ]);
     return g;
+  }
+
+  function addSongSetter(title, index) {
+    songArray[index] = title;
+  }
+
+  function addAnotherSong() {
+    let newEditableSong = <EditableComponent content={"Title of Song"} setter={addSongSetter} index={editableSongs.length} />;
+    setEditableSongs(editableSongs.concat(newEditableSong));
   }
 
   return (
@@ -29,46 +39,42 @@ function AddSongPage(props) {
       <div className="big-container">
         <div className="genre-div">
           <h1> Genre: </h1>
-          <EditableComponent content={genre} setter={setGenre}/>
+          <EditableComponent content={genre} setter={setGenre} />
         </div>
         <div className="artist-div">
           <h1> Artist: </h1>
-          <EditableComponent content={artist} setter={setArtist}/>
+          <EditableComponent content={artist} setter={setArtist} />
         </div>
         <div className="album-div">
           <h1> Album: </h1>
-          <EditableComponent content={album} setter={setAlbum}/>
+          <EditableComponent content={album} setter={setAlbum} />
         </div>
         <div className="selection-div">
           <h1> Songs: </h1>
-          <EditableComponent content={song} setter={setSong}/>
+          {editableSongs.map((editableSong) => (
+            <div>
+              {editableSong}
+            </div>
+          ))}
+
+          <button
+            onClick={() => {
+              addAnotherSong();
+            }}
+          >
+            Add Another Song
+          </button>
         </div>
       </div>
-      <h1
+      <button
         onClick={() => {
           props.mock.addMusic(makeGenre());
         }}
       >
-        Add Song
-      </h1>
+        Add Songs
+      </button>
     </div>
   );
 }
 
 export default AddSongPage;
-
-/*
-        {numOfSongs.forEach((element) => (
-          <li>
-            <EditableComponent content="{element}" />
-          </li>
-        ))}
-
-        <div
-          onClick={() => {
-            setNumOfSongs(numOfSongs + 1);
-          }}
-        >
-          Add Song
-        </div>
-*/
