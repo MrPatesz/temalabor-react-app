@@ -9,7 +9,7 @@ function AddSongPage(props) {
   const [genre, setGenre] = useState("Name of Genre");
   const [artist, setArtist] = useState("Name of Artist");
   const [album, setAlbum] = useState("Title of Album");
-  const [songArray, setSongArray] = useState(["Title of Song"]);
+  const [songArray] = useState(["Title of Song"]);
 
   let firstEditableSong = <EditableComponent content={"Title of Song"} setter={addSongSetter} index={0}/>;
   const [editableSongs, setEditableSongs] = useState([firstEditableSong]);
@@ -17,8 +17,8 @@ function AddSongPage(props) {
   function makeGenre() {
     var g = new Genre(genre, [
       new Artist(artist, [new Album(album, genre, songArray.map(
-        (song) => (
-          new Song(artist, song)
+        (title) => (
+          new Song(artist, title)
         )
       ))]),
     ]);
