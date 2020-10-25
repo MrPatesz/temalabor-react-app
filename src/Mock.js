@@ -9,6 +9,17 @@ class Mock {
   }
   constructor() {
     this.createData();
+    //this.sortData();
+  }
+
+  sortData(){
+    this.genres.sort((g1, g2) => g1.name.localeCompare(g2.name));
+    this.genres.forEach(genre => {
+      genre.artists.sort((a1, a2) => a1.name.localeCompare(a2.name));
+      genre.artists.forEach(artist => {
+        artist.albums.sort((a1, a2) => a1.title.localeCompare(a2.title));
+      });
+    });
   }
 
   createData() {
@@ -66,6 +77,7 @@ class Mock {
         this.genres[index].addArtist(artist);
       });
     }
+    //this.sortData();
   }
 
   ///////////////////////

@@ -17,14 +17,19 @@ code {
   flex-direction: row;
 }
 
-.genre-div {
+.genre-artist-column {
+  display: flex;
+  flex-direction: column;
   float: left;
   width: 25%;
 }
 
+.genre-div {
+  height: 60%;
+}
+
 .artist-div {
-  float: left;
-  width: 25%;
+  height: 40%;
 }
 
 .album-div {
@@ -35,6 +40,18 @@ code {
 .selection-div {
   float: left;
   width: 25%;
+}
+
+.queue-div {
+  float: left;
+  width: 25%;
+}
+
+.buttons-div {
+  display: flex;
+  flex-direction: column;
+  float: left;
+  margin-top: 15%;
 }
 
 .menu-div {

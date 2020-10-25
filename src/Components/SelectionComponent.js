@@ -18,19 +18,20 @@ function SelectionComponent(props) {
               .map((artist) => (
                 <div>
                   {artist.albums
-                  .filter((album) => {
-                    if (props.selectedItems.selectedAlbum === null) return true;
-                    return album.title === props.selectedItems.selectedAlbum;
-                  })
-                  .map((album) => (
-                    <div>
-                    {album.songs.map((song) => (
-                    <li>
-                      {song.artist} - {song.title}
-                    </li>
-                  ))}
-                </div>
-                  ))}
+                    .filter((album) => {
+                      if (props.selectedItems.selectedAlbum === null)
+                        return true;
+                      return album.title === props.selectedItems.selectedAlbum;
+                    })
+                    .map((album) => (
+                      <div>
+                        {album.songs.map((song) => (
+                          <li>
+                            {song.artist} - {song.title}
+                          </li>
+                        ))}
+                      </div>
+                    ))}
                 </div>
               ))}
           </div>
