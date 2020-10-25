@@ -1,80 +1,91 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
+/* AddSongPage & HomePage/ */
 .big-container {
   display: flex;
   flex-direction: row;
 }
+/* /AddSongPage & HomePage */
 
+/* HomePage/ */
 .genre-artist-column {
   display: flex;
   flex-direction: column;
   float: left;
   width: 25%;
 }
-
 .genre-div {
   height: 60%;
 }
-
 .artist-div {
   height: 40%;
 }
-
 .album-div {
   float: left;
   width: 25%;
 }
-
 .selection-div {
   float: left;
   width: 25%;
 }
-
 .queue-div {
   float: left;
   width: 25%;
 }
-
 .buttons-div {
   display: flex;
   flex-direction: column;
   float: left;
   margin-top: 15%;
 }
+/* /HomePage */
 
+/* AddSongPage/ */
+.genre-div2 {
+  width: 25%;
+}
+.artist-div2 {
+  width: 25%;
+}
+.album-div2 {
+  width: 25%;
+}
+.songs-div {
+  width: 25%;
+}
+/* /AddSongPage */
+
+/* index/ */
 .menu-div {
   display: flex;
   flex-direction: row;
 }
-
 .home-page {
   float: left;
   width: 10%;
 }
-
 .playlist-page {
   float: left;
   width: 10%;
 }
-
 .add-song-page {
   float: left;
   width: 10%;
 }
-
 .selected-list-item {
   background-color: lightblue;
   font-weight: bold;
 }
+/* %index */

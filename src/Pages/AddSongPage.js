@@ -37,19 +37,19 @@ function AddSongPage(props) {
   return (
     <div>
       <div className="big-container">
-        <div className="genre-div">
+        <div className="genre-div2">
           <h1> Genre: </h1>
           <EditableComponent content={genre} setter={setGenre} />
         </div>
-        <div className="artist-div">
+        <div className="artist-div2">
           <h1> Artist: </h1>
           <EditableComponent content={artist} setter={setArtist} />
         </div>
-        <div className="album-div">
+        <div className="album-div2">
           <h1> Album: </h1>
           <EditableComponent content={album} setter={setAlbum} />
         </div>
-        <div className="selection-div">
+        <div className="songs-div">
           <h1> Songs: </h1>
           {editableSongs.map((editableSong) => (
             <div>

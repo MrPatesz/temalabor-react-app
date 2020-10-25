@@ -27,7 +27,8 @@ function HomePage(props) {
     var selection = [];
     for (var i = 0; i < genres.length; i++) {
       var artists = genres[i].artists;
-      if (selectedGenre !== null && genres[i].name !== selectedGenre) continue;
+      if (selectedGenre !== null && genres[i].name !== selectedGenre)
+        continue;
       for (var j = 0; j < artists.length; j++) {
         var albums = artists[j].albums;
         if (selectedArtist !== null && artists[j].name !== selectedArtist)
