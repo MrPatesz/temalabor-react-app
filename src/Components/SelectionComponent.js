@@ -1,4 +1,5 @@
 import React from "react";
+import SongComponent from "./BasicComponents/SongComponent";
 
 function SelectionComponent(props) {
   return (
@@ -27,7 +28,7 @@ function SelectionComponent(props) {
                       <div>
                         {album.songs.map((song) => (
                           <li>
-                            {song.artist} - {song.title}
+                            <SongComponent song={song} />
                           </li>
                         ))}
                       </div>
