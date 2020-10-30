@@ -4,6 +4,7 @@ import Album from "../DataClasses/Album";
 import Artist from "../DataClasses/Artist";
 import Genre from "../DataClasses/Genre";
 import Song from "../DataClasses/Song";
+import "./AddSongPage.css";
 
 function AddSongPage(props) {
   const [genre, setGenre] = useState("Name of Genre");
@@ -35,21 +36,21 @@ function AddSongPage(props) {
   }
 
   return (
-    <div>
-      <div className="big-container">
-        <div className="genre-div2">
+    <div className="add-song-page">
+      <div className="add-columns-div">
+        <div className="add-genre-div">
           <h1> Genre: </h1>
           <EditableComponent content={genre} setter={setGenre} />
         </div>
-        <div className="artist-div2">
+        <div className="add-artist-div">
           <h1> Artist: </h1>
           <EditableComponent content={artist} setter={setArtist} />
         </div>
-        <div className="album-div2">
+        <div className="add-album-div">
           <h1> Album: </h1>
           <EditableComponent content={album} setter={setAlbum} />
         </div>
-        <div className="songs-div">
+        <div className="add-songs-div">
           <h1> Songs: </h1>
           {editableSongs.map((editableSong) => (
             <div>

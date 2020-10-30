@@ -12,13 +12,13 @@ var mock = new Mock();
 ReactDOM.render(
   <Router>
     <div className="menu-div">
-      <div className="home-page">
+      <div className="home-menu">
         <Link to="/">Home</Link>
       </div>
-      <div className="playlist-page">
+      <div className="playlist-menu">
         <Link to="/playlist">Playlist</Link>
       </div>
-      <div classNam="add-songs-page">
+      <div className="add-songs-menu">
         <Link to="/add-songs">Add Songs</Link>
       </div>
     </div>

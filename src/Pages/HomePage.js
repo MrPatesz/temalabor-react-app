@@ -4,6 +4,7 @@ import SelectionComponent from "../Components/SelectionComponent";
 import AlbumListComponent from "../Components/AlbumListComponent";
 import GenreListComponent from "../Components/GenreListComponent";
 import QueueComponent from "../Components/QueueComponent";
+import "./HomePage.css";
 
 function HomePage(props) {
   var mock = props.mock;
@@ -27,8 +28,7 @@ function HomePage(props) {
     var selection = [];
     for (var i = 0; i < genres.length; i++) {
       var artists = genres[i].artists;
-      if (selectedGenre !== null && genres[i].name !== selectedGenre)
-        continue;
+      if (selectedGenre !== null && genres[i].name !== selectedGenre) continue;
       for (var j = 0; j < artists.length; j++) {
         var albums = artists[j].albums;
         if (selectedArtist !== null && artists[j].name !== selectedArtist)
@@ -47,8 +47,8 @@ function HomePage(props) {
   }
 
   return (
-    <div className="big-container">
-      <div className="genre-artist-column">
+    <div className="home-page">
+      <div className="columns-div">
         <div className="genre-div">
           <h1> Genres </h1>
           <GenreListComponent mock={mock} selectedItems={selectedItems} />
@@ -57,34 +57,35 @@ function HomePage(props) {
           <h1> Artists </h1>
           <ArtistListComponent mock={mock} selectedItems={selectedItems} />
         </div>
-      </div>
-      <div className="album-div">
-        <h1> Albums </h1>
-        <AlbumListComponent mock={mock} selectedItems={selectedItems} />
-      </div>
-      <div className="selection-div">
-        <h1> Selection </h1>
-        <SelectionComponent mock={mock} selectedItems={selectedItems} />
+
+        <div className="album-div">
+          <h1> Albums </h1>
+          <AlbumListComponent mock={mock} selectedItems={selectedItems} />
+        </div>
+        <div className="selection-div">
+          <h1> Selection </h1>
+          <SelectionComponent mock={mock} selectedItems={selectedItems} />
+        </div>
       </div>
       <div className="queue-div">
         <h1> Queue </h1>
         <QueueComponent queue={queue} />
-        <div className="buttons-div">
-          <button
-            onClick={() => {
-              setQueue([]);
-            }}
-          >
-            Clear Queue
-          </button>
-          <button
-            onClick={() => {
-              enqueueClicked();
-            }}
-          >
-            Enqueue Selection
-          </button>
-        </div>
+      </div>
+      <div className="buttons-div">
+        <button
+          onClick={() => {
+            setQueue([]);
+          }}
+        >
+          Clear Queue
+        </button>
+        <button
+          onClick={() => {
+            enqueueClicked();
+          }}
+        >
+          Enqueue Selection
+        </button>
       </div>
     </div>
   );
