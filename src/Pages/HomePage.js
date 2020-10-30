@@ -12,7 +12,7 @@ function HomePage(props) {
   const [selectedGenre, setSelectedGenre] = useState(null);
   const [selectedArtist, setSelectedArtist] = useState(null);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
-  const [queue, setQueue] = useState([]);
+  const [queue, setQueue] = useState(props.savedQueue);
 
   let selectedItems = {
     selectedGenre,
@@ -44,6 +44,10 @@ function HomePage(props) {
       }
     }
     setQueue(queue.concat(selection));
+
+    for (var l = 0; l < selection.length; l++) {
+      props.savedQueue.push(selection[l]);
+    }
   }
 
   return (
@@ -75,6 +79,9 @@ function HomePage(props) {
         <button
           onClick={() => {
             setQueue([]);
+            while (props.savedQueue.length > 0) {
+              props.savedQueue.pop();
+            }
           }}
         >
           Clear Queue

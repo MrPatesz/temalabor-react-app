@@ -8,6 +8,7 @@ import AddSongsPage from "./Pages/AddSongsPage";
 import Mock from "./Mock";
 
 var mock = new Mock();
+var savedQueue = [];
 
 ReactDOM.render(
   <Router>
@@ -24,13 +25,11 @@ ReactDOM.render(
     </div>
     <Switch>
       <Route exact path="/">
-        <HomePage mock={mock}/>
+        <HomePage mock={mock} savedQueue={savedQueue} />
       </Route>
-      <Route path="/playlist">
-        Show this on Playlist page
-      </Route>
+      <Route path="/playlist">Show this on Playlist page</Route>
       <Route path="/add-songs">
-        <AddSongsPage mock={mock}/>
+        <AddSongsPage mock={mock} />
       </Route>
     </Switch>
   </Router>,
