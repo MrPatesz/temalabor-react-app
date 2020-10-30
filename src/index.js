@@ -4,7 +4,7 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
-import AddSongPage from "./Pages/AddSongPage";
+import AddSongsPage from "./Pages/AddSongsPage";
 import Mock from "./Mock";
 
 var mock = new Mock();
@@ -30,7 +30,7 @@ ReactDOM.render(
         Show this on Playlist page
       </Route>
       <Route path="/add-songs">
-        <AddSongPage mock={mock}/>
+        <AddSongsPage mock={mock}/>
       </Route>
     </Switch>
   </Router>,

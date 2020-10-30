@@ -4,7 +4,8 @@ import Album from "../DataClasses/Album";
 import Artist from "../DataClasses/Artist";
 import Genre from "../DataClasses/Genre";
 import Song from "../DataClasses/Song";
-import "./AddSongPage.css";
+import "./AddSongsPage.css";
+//import Button from 'react-bootstrap/Button';
 
 function AddSongPage(props) {
   const [genre, setGenre] = useState("Name of Genre");
