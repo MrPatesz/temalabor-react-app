@@ -1,5 +1,5 @@
 class Song {
-  constructor(artist, title, url, features = null) {
+  constructor(artist, title, url = null, features = null) {
     this.artist = artist;
     this.title = title;
     this.url = url;

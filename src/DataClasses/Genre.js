@@ -1,5 +1,5 @@
 class Genre {
-  constructor(name, artists = null) {
+  constructor(name, artists) {
     this.name = name;
     this.artists = artists;
   }

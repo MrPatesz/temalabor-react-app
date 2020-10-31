@@ -1,5 +1,5 @@
 class Artist {
-  constructor(name, albums = null) {
+  constructor(name, albums) {
     this.name = name;
     this.albums = albums;
   }
