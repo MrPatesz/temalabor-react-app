@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import EditableComponent from "../Components/BasicComponents/EditableComponent";
+import MyAutocompleteComponent from "../Components/BasicComponents/MyAutocompleteComponent";
 import Album from "../DataClasses/Album";
 import Artist from "../DataClasses/Artist";
 import Genre from "../DataClasses/Genre";
@@ -73,7 +74,7 @@ function AddSongPage(props) {
         var albums = artists[j].albums;
         if (artist !== "Name of Artist" && artists[j].name !== artist) continue;
         for (var k = 0; k < albums.length; k++) {
-          albums2.push(albums[k]);
+          albums2.push({ name: albums[k].title });
         }
       }
     }
@@ -85,53 +86,29 @@ function AddSongPage(props) {
       <div className="add-columns-div">
         <div className="add-genre-div">
           <h1> Genre: </h1>
-          <Autocomplete
-            getItemValue={(item) => item.name}
-            items={props.mock.genres}
-            renderItem={(item, isHighlighted) => (
-              <div
-                style={{ background: isHighlighted ? "lightblue" : "white" }}
-              >
-                {item.name}
-              </div>
-            )}
+          <MyAutocompleteComponent
+            baseValue={"Name of Genre"}
             value={genre}
-            onChange={(e) => setGenre(e.target.value)}
-            onSelect={(val) => setGenre(val)}
+            setter={setGenre}
+            list={props.mock.genres}
           />
         </div>
         <div className="add-artist-div">
           <h1> Artist: </h1>
-          <Autocomplete
-            getItemValue={(item) => item.name}
-            items={getArtists()}
-            renderItem={(item, isHighlighted) => (
-              <div
-                style={{ background: isHighlighted ? "lightblue" : "white" }}
-              >
-                {item.name}
-              </div>
-            )}
+          <MyAutocompleteComponent
+            baseValue={"Name of Artist"}
             value={artist}
-            onChange={(e) => setArtist(e.target.value)}
-            onSelect={(val) => setArtist(val)}
+            setter={setArtist}
+            list={getArtists()}
           />
         </div>
         <div className="add-album-div">
           <h1> Album: </h1>
-          <Autocomplete
-            getItemValue={(item) => item.title}
-            items={getAlbums()}
-            renderItem={(item, isHighlighted) => (
-              <div
-                style={{ background: isHighlighted ? "lightblue" : "white" }}
-              >
-                {item.title}
-              </div>
-            )}
+          <MyAutocompleteComponent
+            baseValue={"Title of Album"}
             value={album}
-            onChange={(e) => setAlbum(e.target.value)}
-            onSelect={(val) => setAlbum(val)}
+            setter={setAlbum}
+            list={getAlbums()}
           />
         </div>
         <div className="add-songs-div">
@@ -139,7 +116,6 @@ function AddSongPage(props) {
           {editableSongs.map((editableSong) => (
             <div>{editableSong}</div>
           ))}
-
           <button
             onClick={() => {
               addAnotherSong();
