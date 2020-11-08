@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import AddSongsPage from "./Pages/AddSongsPage";
 import Mock from "./Mock";
+import FetchTestPage from "./Pages/FetchTestPage";
 
 var mock = new Mock();
 var savedQueue = [];
@@ -27,7 +28,10 @@ ReactDOM.render(
       <Route exact path="/">
         <HomePage mock={mock} savedQueue={savedQueue} />
       </Route>
-      <Route path="/playlist">Show this on Playlist page</Route>
+      <Route path="/playlist">
+        Show this on Playlist page
+        <FetchTestPage />
+      </Route>
       <Route path="/add-songs">
         <AddSongsPage mock={mock} />
       </Route>
