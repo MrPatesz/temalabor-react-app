@@ -6,7 +6,6 @@ import Artist from "../DataClasses/Artist";
 import Genre from "../DataClasses/Genre";
 import Song from "../DataClasses/Song";
 import "./AddSongsPage.css";
-import Autocomplete from "react-autocomplete";
 
 function AddSongPage(props) {
   const [genre, setGenre] = useState("Name of Genre");
