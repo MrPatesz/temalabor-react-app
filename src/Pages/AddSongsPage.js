@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import EditableComponent from "../Components/BasicComponents/EditableComponent";
 import MyAutocompleteComponent from "../Components/BasicComponents/MyAutocompleteComponent";
 import Album from "../DataClasses/Album";
@@ -50,35 +51,104 @@ function AddSongPage(props) {
     setEditableSongs(editableSongs.concat(newEditableSong));
   }
 
+  const [songAIOs, setSongAIOs] = useState([]);
+  const [fetch, setFetch] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get("https://localhost:44339/api/SongAIOs");
+
+      setSongAIOs(result.data);
+    };
+    fetchData();
+  }, [fetch]);
+
+  function getGenres() {
+    var genres2 = [];
+
+    songAIOs.forEach((s) => {
+      if (!genres2.includes(s.genreName)) genres2.push(s.genreName);
+    });
+
+    genres2.sort((g1, g2) => g1.localeCompare(g2));
+
+    return genres2;
+  }
+
   function getArtists() {
     var artists2 = [];
-    for (var i = 0; i < props.mock.genres.length; i++) {
-      var artists = props.mock.genres[i].artists;
-      if (genre !== "Name of Genre" && props.mock.genres[i].name !== genre)
-        continue;
-      for (var j = 0; j < artists.length; j++) {
-        artists2.push(artists[j]);
-      }
-    }
+
+    songAIOs.forEach((s) => {
+      if (
+        !artists2.includes(s.artistName) &&
+        (s.genreName === genre || genre === "Name of Genre" || genre === "")
+      )
+        artists2.push(s.artistName);
+    });
+
+    artists2.sort((a1, a2) => a1.localeCompare(a2));
+
     return artists2;
   }
 
   function getAlbums() {
     var albums2 = [];
-    for (var i = 0; i < props.mock.genres.length; i++) {
-      var artists = props.mock.genres[i].artists;
-      if (genre !== "Name of Genre" && props.mock.genres[i].name !== genre)
-        continue;
-      for (var j = 0; j < artists.length; j++) {
-        var albums = artists[j].albums;
-        if (artist !== "Name of Artist" && artists[j].name !== artist) continue;
-        for (var k = 0; k < albums.length; k++) {
-          albums2.push({ name: albums[k].title });
-        }
-      }
-    }
+
+    songAIOs.forEach((s) => {
+      if (
+        !albums2.includes(s.albumTitle) &&
+        (s.genreName === genre || genre === "Name of Genre" || genre === "") &&
+        (s.artistName === artist ||
+          artist === "Name of Artist" ||
+          artist === "")
+      )
+        albums2.push(s.albumTitle);
+    });
+
+    albums2.sort((a1, a2) => a1.localeCompare(a2));
+
     return albums2;
   }
+
+  function postSongAIOs() {
+    var postArray = [];
+
+    songArray.forEach((song) => {
+      postArray.push({
+        GenreName: genre,
+        AlbumTitle: album,
+        ArtistName: artist,
+        SongTitle: song,
+      });
+    });
+
+    postArray.forEach(async (p) => {
+      await axios.post("https://localhost:44339/api/SongAIOs", p);
+    });
+
+    //postSongAIOs('{"GenreName":"test22","AlbumTitle":"All Killer, No Filler","ArtistName":"Sum 41","SongTitle":"In Too 1231"}');
+
+    setFetch(!fetch);
+  }
+
+  const [post, setPost] = useState(false);
+  useEffect(() => {
+    const postData = async (toPost) => {
+      const result = await axios.post(
+        "https://localhost:44339/api/SongAIOs",
+        toPost
+      );
+    };
+
+    const toPost = {
+      GenreName: genre,
+      AlbumTitle: album,
+      ArtistName: artist,
+      SongTitle: songArray[0],
+    };
+
+    postData(toPost);
+  }, [post]);
 
   return (
     <div className="add-song-page">
@@ -89,7 +159,7 @@ function AddSongPage(props) {
             baseValue={"Name of Genre"}
             value={genre}
             setter={setGenre}
-            list={props.mock.genres}
+            list={getGenres()}
           />
         </div>
         <div className="add-artist-div">
@@ -126,6 +196,8 @@ function AddSongPage(props) {
       </div>
       <button
         onClick={() => {
+          //setPost(!post);
+          postSongAIOs();
           props.mock.addMusic(makeGenre());
         }}
       >

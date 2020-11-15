@@ -4,11 +4,11 @@ import Autocomplete from "react-autocomplete";
 function MyAutocompleteComponent(props) {
   return (
     <Autocomplete
-      getItemValue={(item) => item.name}
+      getItemValue={(item) => item.toString()}
       items={props.list}
       renderItem={(item, isHighlighted) => (
         <div style={{ background: isHighlighted ? "lightblue" : "white" }}>
-          {item.name}
+          {item}
         </div>
       )}
       value={props.value}
@@ -16,7 +16,7 @@ function MyAutocompleteComponent(props) {
       onSelect={(val) => props.setter(val)}
       shouldItemRender={(item, value) => {
         if(value === props.baseValue) return true;
-        var itemLower = item.name.toLowerCase();
+        var itemLower = item.toLowerCase();
         var valueLower = props.value.toLowerCase();
         return itemLower.includes(valueLower);
       }}
