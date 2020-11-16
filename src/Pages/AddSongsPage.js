@@ -122,33 +122,19 @@ function AddSongPage(props) {
       });
     });
 
-    postArray.forEach(async (p) => {
-      await axios.post("https://localhost:44339/api/SongAIOs", p);
-    });
+    let axiosConfig = {
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
 
-    //postSongAIOs('{"GenreName":"test22","AlbumTitle":"All Killer, No Filler","ArtistName":"Sum 41","SongTitle":"In Too 1231"}');
+    postArray.forEach(async (p) => {
+      await axios.post("https://localhost:44339/api/SongAIOs", p, axiosConfig);
+    });
 
     setFetch(!fetch);
   }
-
-  const [post, setPost] = useState(false);
-  useEffect(() => {
-    const postData = async (toPost) => {
-      const result = await axios.post(
-        "https://localhost:44339/api/SongAIOs",
-        toPost
-      );
-    };
-
-    const toPost = {
-      GenreName: genre,
-      AlbumTitle: album,
-      ArtistName: artist,
-      SongTitle: songArray[0],
-    };
-
-    postData(toPost);
-  }, [post]);
 
   return (
     <div className="add-song-page">
@@ -196,7 +182,6 @@ function AddSongPage(props) {
       </div>
       <button
         onClick={() => {
-          //setPost(!post);
           postSongAIOs();
           props.mock.addMusic(makeGenre());
         }}
