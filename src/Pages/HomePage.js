@@ -8,8 +8,6 @@ import QueueComponent from "../Components/QueueComponent";
 import "./HomePage.css";
 
 function HomePage(props) {
-  var mock = props.mock;
-
   const [selectedGenre, setSelectedGenre] = useState(null);
   const [selectedArtist, setSelectedArtist] = useState(null);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
@@ -66,16 +64,16 @@ function HomePage(props) {
         </div>
         <div className="artist-div">
           <h1> Artists </h1>
-          <ArtistListComponent songAIOs={songAIOs} mock={mock} selectedItems={selectedItems} />
+          <ArtistListComponent songAIOs={songAIOs} selectedItems={selectedItems} />
         </div>
 
         <div className="album-div">
           <h1> Albums </h1>
-          <AlbumListComponent songAIOs={songAIOs} mock={mock} selectedItems={selectedItems} />
+          <AlbumListComponent songAIOs={songAIOs} selectedItems={selectedItems} />
         </div>
         <div className="selection-div">
           <h1> Selection </h1>
-          <SelectionComponent songAIOs={songAIOs} mock={mock} selectedItems={selectedItems} />
+          <SelectionComponent songAIOs={songAIOs} selectedItems={selectedItems} />
         </div>
       </div>
       <div className="queue-div">
