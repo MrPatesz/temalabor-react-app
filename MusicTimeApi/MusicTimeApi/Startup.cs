@@ -23,6 +23,15 @@ namespace MusicTimeApi
             services.AddDbContext<MusicTimeContext>(opt =>
                 opt.UseInMemoryDatabase("MusicTimeDB"));
             services.AddControllers();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .WithOrigins("http://localhost:3000")
+                        .AllowCredentials());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +45,8 @@ namespace MusicTimeApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 

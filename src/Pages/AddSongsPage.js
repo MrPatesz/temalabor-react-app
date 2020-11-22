@@ -56,7 +56,7 @@ function AddSongPage(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get("https://localhost:44339/api/SongAIOs");
+      const result = await axios.get("https://localhost:5001/api/SongAIOs");
 
       setSongAIOs(result.data);
     };
@@ -130,7 +130,7 @@ function AddSongPage(props) {
     };
 
     postArray.forEach(async (p) => {
-      await axios.post("https://localhost:44339/api/SongAIOs", p, axiosConfig);
+      await axios.post("https://localhost:5001/api/SongAIOs", p, axiosConfig);
     });
 
     setFetch(!fetch);
