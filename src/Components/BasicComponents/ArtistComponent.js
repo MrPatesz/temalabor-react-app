@@ -4,11 +4,11 @@ function ArtistComponent(props) {
   return (
     <div
       onClick={() => {
-        props.selectedItems.setSelectedArtist(props.artist.name);
+        props.selectedItems.setSelectedArtist(props.artist);
         props.selectedItems.setSelectedAlbum(null);
       }}
     >
-      {props.artist.name}
+      {props.artist}
     </div>
   );
 }

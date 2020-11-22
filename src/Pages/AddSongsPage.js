@@ -8,12 +8,8 @@ import Genre from "../DataClasses/Genre";
 import Song from "../DataClasses/Song";
 import "./AddSongsPage.css";
 
-function AddSongPage(props) {
-  const [genre, setGenre] = useState("Name of Genre");
-  const [artist, setArtist] = useState("Name of Artist");
-  const [album, setAlbum] = useState("Title of Album");
-  const [songArray] = useState(["Title of Song"]);
-
+function AddSongPage() {
+  
   let firstEditableSong = (
     <EditableComponent
       content={"Title of Song"}
@@ -22,6 +18,11 @@ function AddSongPage(props) {
     />
   );
   const [editableSongs, setEditableSongs] = useState([firstEditableSong]);
+
+  const [genre, setGenre] = useState("Name of Genre");
+  const [artist, setArtist] = useState("Name of Artist");
+  const [album, setAlbum] = useState("Title of Album");
+  const [songArray] = useState(["Title of Song"]);
 
   function makeGenre() {
     var g = new Genre(genre, [
@@ -52,7 +53,6 @@ function AddSongPage(props) {
   }
 
   const [songAIOs, setSongAIOs] = useState([]);
-  const [fetch, setFetch] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,53 +61,53 @@ function AddSongPage(props) {
       setSongAIOs(result.data);
     };
     fetchData();
-  }, [fetch]);
+  }, []);
 
   function getGenres() {
-    var genres2 = [];
+    var genres = [];
 
     songAIOs.forEach((s) => {
-      if (!genres2.includes(s.genreName)) genres2.push(s.genreName);
+      if (!genres.includes(s.genreName)) genres.push(s.genreName);
     });
 
-    genres2.sort((g1, g2) => g1.localeCompare(g2));
+    genres.sort((g1, g2) => g1.localeCompare(g2));
 
-    return genres2;
+    return genres;
   }
 
   function getArtists() {
-    var artists2 = [];
+    var artists = [];
 
     songAIOs.forEach((s) => {
       if (
-        !artists2.includes(s.artistName) &&
+        !artists.includes(s.artistName) &&
         (s.genreName === genre || genre === "Name of Genre" || genre === "")
       )
-        artists2.push(s.artistName);
+        artists.push(s.artistName);
     });
 
-    artists2.sort((a1, a2) => a1.localeCompare(a2));
+    artists.sort((a1, a2) => a1.localeCompare(a2));
 
-    return artists2;
+    return artists;
   }
 
   function getAlbums() {
-    var albums2 = [];
+    var albums = [];
 
     songAIOs.forEach((s) => {
       if (
-        !albums2.includes(s.albumTitle) &&
+        !albums.includes(s.albumTitle) &&
         (s.genreName === genre || genre === "Name of Genre" || genre === "") &&
         (s.artistName === artist ||
           artist === "Name of Artist" ||
           artist === "")
       )
-        albums2.push(s.albumTitle);
+        albums.push(s.albumTitle);
     });
 
-    albums2.sort((a1, a2) => a1.localeCompare(a2));
+    albums.sort((a1, a2) => a1.localeCompare(a2));
 
-    return albums2;
+    return albums;
   }
 
   function postSongAIOs() {
@@ -122,18 +122,9 @@ function AddSongPage(props) {
       });
     });
 
-    let axiosConfig = {
-      headers: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "Access-Control-Allow-Origin": "*",
-      },
-    };
-
     postArray.forEach(async (p) => {
-      await axios.post("https://localhost:5001/api/SongAIOs", p, axiosConfig);
+      await axios.post("https://localhost:5001/api/SongAIOs", p);
     });
-
-    setFetch(!fetch);
   }
 
   return (
@@ -183,7 +174,7 @@ function AddSongPage(props) {
       <button
         onClick={() => {
           postSongAIOs();
-          props.mock.addMusic(makeGenre());
+          //props.mock.addMusic(makeGenre());
         }}
       >
         Add Songs

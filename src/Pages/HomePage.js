@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import ArtistListComponent from "../Components/ArtistListComponent";
 import SelectionComponent from "../Components/SelectionComponent";
 import AlbumListComponent from "../Components/AlbumListComponent";
@@ -23,26 +24,32 @@ function HomePage(props) {
     setSelectedAlbum,
   };
 
+  const [songAIOs, setSongAIOs] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get("https://localhost:5001/api/SongAIOs");
+
+      setSongAIOs(result.data);
+    };
+    fetchData();
+  }, []);
+
   function enqueueClicked() {
-    var genres = mock.genres;
     var selection = [];
-    for (var i = 0; i < genres.length; i++) {
-      var artists = genres[i].artists;
-      if (selectedGenre !== null && genres[i].name !== selectedGenre) continue;
-      for (var j = 0; j < artists.length; j++) {
-        var albums = artists[j].albums;
-        if (selectedArtist !== null && artists[j].name !== selectedArtist)
-          continue;
-        for (var k = 0; k < albums.length; k++) {
-          var songs = albums[k].songs;
-          if (selectedAlbum !== null && albums[k].title !== selectedAlbum)
-            continue;
-          for (var n = 0; n < songs.length; n++) {
-            selection.push(songs[n]);
-          }
-        }
-      }
-    }
+    songAIOs.forEach((s) => {
+      var songString = s.artistName + " - " + s.songTitle;
+      if (
+        !selection.includes(songString) &&
+        (s.genreName === selectedGenre || selectedGenre === null) &&
+        (s.artistName === selectedArtist || selectedArtist === null) &&
+        (s.albumTitle === selectedAlbum || selectedAlbum === null)
+      )
+      selection.push(songString);
+    });
+
+    selection.sort((a1, a2) => a1.localeCompare(a2));
+
     setQueue(queue.concat(selection));
 
     for (var l = 0; l < selection.length; l++) {
@@ -55,20 +62,20 @@ function HomePage(props) {
       <div className="columns-div">
         <div className="genre-div">
           <h1> Genres </h1>
-          <GenreListComponent mock={mock} selectedItems={selectedItems} />
+          <GenreListComponent songAIOs={songAIOs} selectedItems={selectedItems} />
         </div>
         <div className="artist-div">
           <h1> Artists </h1>
-          <ArtistListComponent mock={mock} selectedItems={selectedItems} />
+          <ArtistListComponent songAIOs={songAIOs} mock={mock} selectedItems={selectedItems} />
         </div>
 
         <div className="album-div">
           <h1> Albums </h1>
-          <AlbumListComponent mock={mock} selectedItems={selectedItems} />
+          <AlbumListComponent songAIOs={songAIOs} mock={mock} selectedItems={selectedItems} />
         </div>
         <div className="selection-div">
           <h1> Selection </h1>
-          <SelectionComponent mock={mock} selectedItems={selectedItems} />
+          <SelectionComponent songAIOs={songAIOs} mock={mock} selectedItems={selectedItems} />
         </div>
       </div>
       <div className="queue-div">

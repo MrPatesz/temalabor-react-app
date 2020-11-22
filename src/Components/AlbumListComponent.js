@@ -2,6 +2,23 @@ import React from "react";
 import AlbumComponent from "./BasicComponents/AlbumComponent";
 
 function AlbumListComponent(props) {
+  function getAlbums() {
+    var albums = [];
+
+    props.songAIOs.forEach((s) => {
+      if (
+        !albums.includes(s.albumTitle) &&
+        (s.genreName === props.selectedItems.selectedGenre || props.selectedItems.selectedGenre === null) &&
+        (s.artistName === props.selectedItems.selectedArtist ||
+          props.selectedItems.selectedArtist === null)
+      )
+        albums.push(s.albumTitle);
+    });
+
+    albums.sort((a1, a2) => a1.localeCompare(a2));
+
+    return albums;
+  }
   return (
     <ul>
       <li
@@ -16,38 +33,17 @@ function AlbumListComponent(props) {
       >
         All
       </li>
-      {props.mock.genres
-        .filter((genre) => {
-          if (props.selectedItems.selectedGenre === null) return true;
-          return genre.name === props.selectedItems.selectedGenre;
-        })
-        .map((genre) => (
-          <div>
-            {genre.artists
-              .filter((artist) => {
-                if (props.selectedItems.selectedArtist === null) return true;
-                return artist.name === props.selectedItems.selectedArtist;
-              })
-              .map((artist) => (
-                <div>
-                  {artist.albums.map((album) => (
-                    <li
-                      className={
-                        props.selectedItems.selectedAlbum === album.title
-                          ? "selected-list-item"
-                          : "not-selected-list-item"
-                      }
-                    >
-                      <AlbumComponent
-                        album={album}
-                        selectedItems={props.selectedItems}
-                      />
-                    </li>
-                  ))}
-                </div>
-              ))}
-          </div>
-        ))}
+      {getAlbums().map((album) => (
+        <li
+          className={
+            props.selectedItems.selectedAlbum === album
+              ? "selected-list-item"
+              : "not-selected-list-item"
+          }
+        >
+          <AlbumComponent album={album} selectedItems={props.selectedItems} />
+        </li>
+      ))}
     </ul>
   );
 }

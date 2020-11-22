@@ -4,12 +4,12 @@ function GenreComponent(props) {
   return (
     <div
       onClick={() => {
-        props.selectedItems.setSelectedGenre(props.genre.name);
+        props.selectedItems.setSelectedGenre(props.genre);
         props.selectedItems.setSelectedArtist(null);
         props.selectedItems.setSelectedAlbum(null);
       }}
     >
-      {props.genre.name}
+      {props.genre}
     </div>
   );
 }

@@ -2,6 +2,21 @@ import React from "react";
 import ArtistComponent from "./BasicComponents/ArtistComponent";
 
 function ArtistListComponent(props) {
+  function getArtists() {
+    var artists = [];
+
+    props.songAIOs.forEach((s) => {
+      if (
+        !artists.includes(s.artistName) &&
+        (s.genreName === props.selectedItems.selectedGenre || props.selectedItems.selectedGenre === null)
+      )
+        artists.push(s.artistName);
+    });
+
+    artists.sort((a1, a2) => a1.localeCompare(a2));
+
+    return artists;
+  }
   return (
     <ul>
       <li
@@ -17,29 +32,17 @@ function ArtistListComponent(props) {
       >
         All
       </li>
-      {props.mock.genres
-        .filter((genre) => {
-          if (props.selectedItems.selectedGenre === null) return true;
-          return genre.name === props.selectedItems.selectedGenre;
-        })
-        .map((genre) => (
-          <div>
-            {genre.artists.map((artist) => (
-              <li
-                className={
-                  props.selectedItems.selectedArtist === artist.name
-                    ? "selected-list-item"
-                    : "not-selected-list-item"
-                }
-              >
-                <ArtistComponent
-                  artist={artist}
-                  selectedItems={props.selectedItems}
-                />
-              </li>
-            ))}
-          </div>
-        ))}
+      {getArtists().map((artist) => (
+        <li
+          className={
+            props.selectedItems.selectedArtist === artist
+              ? "selected-list-item"
+              : "not-selected-list-item"
+          }
+        >
+          <ArtistComponent artist={artist} selectedItems={props.selectedItems} />
+        </li>
+      ))}
     </ul>
   );
 }

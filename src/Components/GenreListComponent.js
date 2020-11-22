@@ -2,6 +2,18 @@ import React from "react";
 import GenreComponent from "./BasicComponents/GenreComponent";
 
 function GenreListComponent(props) {
+  function getGenres() {
+    var genres = [];
+
+    props.songAIOs.forEach((s) => {
+      if (!genres.includes(s.genreName)) genres.push(s.genreName);
+    });
+
+    genres.sort((g1, g2) => g1.localeCompare(g2));
+
+    return genres;
+  }
+
   return (
     <ul>
       <li
@@ -18,10 +30,10 @@ function GenreListComponent(props) {
       >
         All
       </li>
-      {props.mock.genres.map((genre) => (
+      {getGenres().map((genre) => (
         <li
           className={
-            props.selectedItems.selectedGenre === genre.name
+            props.selectedItems.selectedGenre === genre
               ? "selected-list-item"
               : "not-selected-list-item"
           }

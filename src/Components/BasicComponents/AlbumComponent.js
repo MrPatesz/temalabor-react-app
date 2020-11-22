@@ -4,10 +4,10 @@ function AlbumComponent(props) {
   return (
     <div
       onClick={() => {
-        props.selectedItems.setSelectedAlbum(props.album.title);
+        props.selectedItems.setSelectedAlbum(props.album);
       }}
     >
-      {props.album.title}
+      {props.album}
     </div>
   );
 }

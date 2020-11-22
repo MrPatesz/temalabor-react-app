@@ -33,7 +33,7 @@ ReactDOM.render(
         <Api />
       </Route>
       <Route path="/add-songs">
-        <AddSongsPage mock={mock} />
+        <AddSongsPage />
       </Route>
     </Switch>
   </Router>,
