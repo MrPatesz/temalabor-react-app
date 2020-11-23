@@ -21,7 +21,8 @@ namespace MusicTimeApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MusicTimeContext>(opt =>
-                opt.UseInMemoryDatabase("MusicTimeDB"));
+                opt.UseSqlServer(@"Data Source=(localdb)\mssqllocaldb;Initial Catalog=MusicTimeDB;Integrated Security=True"));
+
             services.AddControllers();
 
             services.AddCors(options =>
