@@ -3,27 +3,6 @@
   margin-right: 10px;
   margin-bottom: 10px;
 }
-.columns-div {
-  display: flex;
-  flex-direction: row;
-}
-.genre-div {
-  width: 25%;
-}
-.artist-div {
-  width: 25%;
-}
-.album-div {
-  width: 25%;
-}
-.selection-div {
-  width: 25%;
-}
-
-.queue-div {
-  position: absolute;
-  top: 50%;
-}
 
 .buttons-div {
   display: flex;

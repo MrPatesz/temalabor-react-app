@@ -8,6 +8,9 @@ import QueueComponent from "../Components/QueueComponent";
 import "./HomePage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function HomePage(props) {
   const [selectedGenre, setSelectedGenre] = useState(null);
@@ -59,28 +62,30 @@ function HomePage(props) {
 
   return (
     <div className="home-page">
-      <div className="columns-div">
-        <div className="genre-div">
-          <h1> Genres </h1>
-          <GenreListComponent songAIOs={songAIOs} selectedItems={selectedItems} />
-        </div>
-        <div className="artist-div">
-          <h1> Artists </h1>
-          <ArtistListComponent songAIOs={songAIOs} selectedItems={selectedItems} />
-        </div>
-        <div className="album-div">
-          <h1> Albums </h1>
-          <AlbumListComponent songAIOs={songAIOs} selectedItems={selectedItems} />
-        </div>
-        <div className="selection-div">
-          <h1> Selection </h1>
-          <SelectionComponent songAIOs={songAIOs} selectedItems={selectedItems} />
-        </div>
-      </div>
-      <div className="queue-div">
-        <h1> Queue </h1>
-        <QueueComponent queue={queue} />
-      </div>
+      <Container fluid="true">
+        <Row>
+          <Col xs={4} sm md={2} lg={2} xl={2}>
+            <h1> Genres </h1>
+            <GenreListComponent songAIOs={songAIOs} selectedItems={selectedItems} />
+          </Col>
+          <Col xs={4} sm md={2} lg={2} xl={2}>
+            <h1> Artists </h1>
+            <ArtistListComponent songAIOs={songAIOs} selectedItems={selectedItems} />
+          </Col>
+          <Col xs={4} sm md={3} lg={2} xl={2}>
+            <h1> Albums </h1>
+            <AlbumListComponent songAIOs={songAIOs} selectedItems={selectedItems} />
+          </Col>
+          <Col xs={6} sm md={5} lg={3} xl={3}>
+            <h1> Selection </h1>
+            <SelectionComponent songAIOs={songAIOs} selectedItems={selectedItems} />
+          </Col>
+          <Col xs={6} sm md={12} lg={3} xl={3}>
+          <h1> Queue </h1>
+            <QueueComponent queue={queue} />
+          </Col>
+        </Row>
+      </Container>
       <div className="buttons-div">
         <Button className="mb-1" variant="outline-danger"
           onClick={() => {
