@@ -6,6 +6,8 @@ import AlbumListComponent from "../Components/AlbumListComponent";
 import GenreListComponent from "../Components/GenreListComponent";
 import QueueComponent from "../Components/QueueComponent";
 import "./HomePage.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Button from "react-bootstrap/Button";
 
 function HomePage(props) {
   const [selectedGenre, setSelectedGenre] = useState(null);
@@ -66,7 +68,6 @@ function HomePage(props) {
           <h1> Artists </h1>
           <ArtistListComponent songAIOs={songAIOs} selectedItems={selectedItems} />
         </div>
-
         <div className="album-div">
           <h1> Albums </h1>
           <AlbumListComponent songAIOs={songAIOs} selectedItems={selectedItems} />
@@ -81,7 +82,7 @@ function HomePage(props) {
         <QueueComponent queue={queue} />
       </div>
       <div className="buttons-div">
-        <button
+        <Button className="mb-1" variant="outline-danger"
           onClick={() => {
             setQueue([]);
             while (props.savedQueue.length > 0) {
@@ -90,14 +91,14 @@ function HomePage(props) {
           }}
         >
           Clear Queue
-        </button>
-        <button
+        </Button>
+        <Button variant="outline-info"
           onClick={() => {
             enqueueClicked();
           }}
         >
           Enqueue Selection
-        </button>
+        </Button>
       </div>
     </div>
   );

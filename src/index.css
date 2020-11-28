@@ -12,20 +12,6 @@ code {
     monospace;
 }
 
-.menu-div {
-  display: flex;
-  flex-direction: row;
-  margin-left: 10px;
-  margin-top: 5px;
-}
-.playlist-menu {
-  position: absolute;
-  left: 100px;
-}
-.add-songs-menu {
-  position: absolute;
-  left: 200px;
-}
 .selected-list-item {
   background-color: lightblue;
   font-weight: bold;
