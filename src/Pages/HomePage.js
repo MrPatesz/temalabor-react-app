@@ -62,15 +62,28 @@ function HomePage(props) {
 
   function deleteSelection() {
     var selection = [];
+    var selectionIndex = [];
+    var index = 0;
     songAIOs.forEach((s) => {
       if (
         !selection.includes(s) &&
         (s.genreName === selectedGenre || selectedGenre === null) &&
         (s.artistName === selectedArtist || selectedArtist === null) &&
         (s.albumTitle === selectedAlbum || selectedAlbum === null)
-      )
-      selection.push(s);
+      ){
+        selection.push(s);
+        selectionIndex.push(index);
+      }
+      index++;
     });
+
+    selectionIndex.forEach( idx => {
+        songAIOs.splice(idx, 1);
+      }
+    );
+    setSelectedGenre(null);
+    setSelectedArtist(null);
+    setSelectedAlbum(null);
 
     selection.forEach(async (s) => {
       await axios.delete("https://localhost:5001/api/SongAIOs", {
@@ -82,6 +95,13 @@ function HomePage(props) {
         },
       });
     });
+  }
+
+  function deleteClicked() {
+    var result = window.confirm("This will delete all songs in selection from the database! Are you sure?");
+    if(result){
+      deleteSelection();
+    }
   }
 
   return (
@@ -113,7 +133,7 @@ function HomePage(props) {
       <div className="buttons-div">
         <Button className="mr-2" variant="outline-danger"
           onClick={() => {
-            deleteSelection();
+            deleteClicked();
           }}
         >
           Delete Selection
