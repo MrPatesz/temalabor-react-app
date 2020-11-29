@@ -6,8 +6,8 @@
 
 .buttons-div {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   position: absolute;
-  bottom: 10px;
+  top: 10px;
   right: 10px;
 }

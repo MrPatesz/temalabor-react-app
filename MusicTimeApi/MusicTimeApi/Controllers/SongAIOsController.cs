@@ -99,6 +99,27 @@ namespace MusicTimeApi.Controllers
             return songAIO;
         }
 
+        // DELETE: api/SongAIOs
+        [HttpDelete]
+        public async Task<IActionResult> DeleteSongAIO(SongAIO songAIO)
+        {
+            var dbSongAIO = await _context.SongAIO
+                        .SingleOrDefaultAsync(s =>
+                            s.GenreName == songAIO.GenreName &&
+                            s.AlbumTitle == songAIO.AlbumTitle &&
+                            s.ArtistName == songAIO.ArtistName &&
+                            s.SongTitle == songAIO.SongTitle
+                        );
+
+            if (dbSongAIO == null)
+                return NotFound();
+
+            _context.SongAIO.Remove(dbSongAIO);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         private bool SongAIOExists(long id)
         {
             return _context.SongAIO.Any(e => e.Id == id);

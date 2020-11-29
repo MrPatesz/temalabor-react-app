@@ -60,34 +60,58 @@ function HomePage(props) {
     }
   }
 
+  function deleteSelection() {
+    var selection = [];
+    songAIOs.forEach((s) => {
+      if (
+        !selection.includes(s) &&
+        (s.genreName === selectedGenre || selectedGenre === null) &&
+        (s.artistName === selectedArtist || selectedArtist === null) &&
+        (s.albumTitle === selectedAlbum || selectedAlbum === null)
+      )
+      selection.push(s);
+    });
+
+    selection.forEach(async (s) => {
+      await axios.delete("https://localhost:5001/api/SongAIOs", s);
+    });
+  }
+
   return (
     <div className="home-page">
       <Container fluid="true">
-        <Row>
-          <Col xs={4} sm md={2} lg={2} xl={2}>
+        <Row className="justify-content-center">
+          <Col xs={6} sm={4} md={4} lg={2} xl={2}>
             <h1> Genres </h1>
             <GenreListComponent songAIOs={songAIOs} selectedItems={selectedItems} />
           </Col>
-          <Col xs={4} sm md={2} lg={2} xl={2}>
+          <Col xs={6} sm={4} md={4} lg={3} xl={2}>
             <h1> Artists </h1>
             <ArtistListComponent songAIOs={songAIOs} selectedItems={selectedItems} />
           </Col>
-          <Col xs={4} sm md={3} lg={2} xl={2}>
+          <Col xs={6} sm={4} md={4} lg={3} xl={2}>
             <h1> Albums </h1>
             <AlbumListComponent songAIOs={songAIOs} selectedItems={selectedItems} />
           </Col>
-          <Col xs={6} sm md={5} lg={3} xl={3}>
+          <Col xs={6} sm={6} md={6} lg={4} xl={3}>
             <h1> Selection </h1>
             <SelectionComponent songAIOs={songAIOs} selectedItems={selectedItems} />
           </Col>
-          <Col xs={6} sm md={12} lg={3} xl={3}>
-          <h1> Queue </h1>
-            <QueueComponent queue={queue} />
+          <Col xs={12} sm={6} md={6} lg={12} xl={3}>
+            <h1> Queue </h1>
+            <QueueComponent queue={queue}/>
           </Col>
         </Row>
       </Container>
       <div className="buttons-div">
-        <Button className="mb-1" variant="outline-danger"
+        <Button className="mr-2" variant="outline-danger"
+          onClick={() => {
+            deleteSelection();
+          }}
+        >
+          Delete Selection
+        </Button>
+        <Button className="mr-2" variant="outline-warning"
           onClick={() => {
             setQueue([]);
             while (props.savedQueue.length > 0) {

@@ -7,6 +7,8 @@ import Artist from "../DataClasses/Artist";
 import Genre from "../DataClasses/Genre";
 import Song from "../DataClasses/Song";
 import "./AddSongsPage.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Button from "react-bootstrap/Button";
 
 function AddSongPage() {
   
@@ -23,19 +25,6 @@ function AddSongPage() {
   const [artist, setArtist] = useState("Name of Artist");
   const [album, setAlbum] = useState("Title of Album");
   const [songArray] = useState(["Title of Song"]);
-
-  function makeGenre() {
-    var g = new Genre(genre, [
-      new Artist(artist, [
-        new Album(
-          album,
-          genre,
-          songArray.map((title) => new Song(artist, title))
-        ),
-      ]),
-    ]);
-    return g;
-  }
 
   function addSongSetter(title, index) {
     songArray[index] = title;
@@ -114,12 +103,14 @@ function AddSongPage() {
     var postArray = [];
 
     songArray.forEach((song) => {
-      postArray.push({
-        GenreName: genre,
-        AlbumTitle: album,
-        ArtistName: artist,
-        SongTitle: song,
-      });
+      if(song !== ""){
+        postArray.push({
+          GenreName: genre,
+          AlbumTitle: album,
+          ArtistName: artist,
+          SongTitle: song,
+        });
+      }
     });
 
     postArray.forEach(async (p) => {
@@ -160,25 +151,26 @@ function AddSongPage() {
         <div className="add-songs-div">
           <h1> Songs: </h1>
           {editableSongs.map((editableSong) => (
-            <div>{editableSong}</div>
+            <div className="pb-1">{editableSong}</div>
           ))}
-          <button
-            onClick={() => {
-              addAnotherSong();
-            }}
-          >
-            Add Another Song
-          </button>
         </div>
       </div>
-      <button
-        onClick={() => {
-          postSongAIOs();
-          //props.mock.addMusic(makeGenre());
-        }}
-      >
-        Add Songs
-      </button>
+      <div className="buttons-div">
+        <Button className="mr-2" variant="outline-info"
+          onClick={() => {
+            addAnotherSong();
+          }}
+        >
+          Add Another Song
+        </Button>
+        <Button variant="outline-info"
+          onClick={() => {
+            postSongAIOs();
+          }}
+        >
+          Add Songs
+        </Button>
+      </div>
     </div>
   );
 }
