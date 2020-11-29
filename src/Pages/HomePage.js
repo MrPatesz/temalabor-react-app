@@ -73,7 +73,14 @@ function HomePage(props) {
     });
 
     selection.forEach(async (s) => {
-      await axios.delete("https://localhost:5001/api/SongAIOs", s);
+      await axios.delete("https://localhost:5001/api/SongAIOs", {
+        data: {
+          GenreName: s.genreName,
+          AlbumTitle: s.albumTitle,
+          ArtistName: s.artistName,
+          SongTitle: s.songTitle,
+        },
+      });
     });
   }
 

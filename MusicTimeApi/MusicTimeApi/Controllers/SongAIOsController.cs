@@ -104,7 +104,7 @@ namespace MusicTimeApi.Controllers
         public async Task<IActionResult> DeleteSongAIO(SongAIO songAIO)
         {
             var dbSongAIO = await _context.SongAIO
-                        .SingleOrDefaultAsync(s =>
+                        .FirstOrDefaultAsync(s =>
                             s.GenreName == songAIO.GenreName &&
                             s.AlbumTitle == songAIO.AlbumTitle &&
                             s.ArtistName == songAIO.ArtistName &&

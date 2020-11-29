@@ -2,16 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import EditableComponent from "../Components/BasicComponents/EditableComponent";
 import MyAutocompleteComponent from "../Components/BasicComponents/MyAutocompleteComponent";
-import Album from "../DataClasses/Album";
-import Artist from "../DataClasses/Artist";
-import Genre from "../DataClasses/Genre";
-import Song from "../DataClasses/Song";
 import "./AddSongsPage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 
 function AddSongPage() {
-  
   let firstEditableSong = (
     <EditableComponent
       content={"Title of Song"}
@@ -103,7 +98,7 @@ function AddSongPage() {
     var postArray = [];
 
     songArray.forEach((song) => {
-      if(song !== ""){
+      if (song !== "") {
         postArray.push({
           GenreName: genre,
           AlbumTitle: album,
@@ -156,14 +151,17 @@ function AddSongPage() {
         </div>
       </div>
       <div className="buttons-div">
-        <Button className="mr-2" variant="outline-info"
+        <Button
+          className="mr-2"
+          variant="outline-info"
           onClick={() => {
             addAnotherSong();
           }}
         >
           Add Another Song
         </Button>
-        <Button variant="outline-info"
+        <Button
+          variant="outline-info"
           onClick={() => {
             postSongAIOs();
           }}
