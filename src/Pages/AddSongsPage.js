@@ -5,6 +5,9 @@ import MyAutocompleteComponent from "../Components/BasicComponents/MyAutocomplet
 import "./AddSongsPage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function AddSongPage() {
   let firstEditableSong = (
@@ -116,39 +119,43 @@ function AddSongPage() {
   return (
     <div className="add-song-page">
       <div className="add-columns-div">
-        <div className="add-genre-div">
-          <h1> Genre: </h1>
-          <MyAutocompleteComponent
-            baseValue={"Name of Genre"}
-            value={genre}
-            setter={setGenre}
-            list={getGenres()}
-          />
-        </div>
-        <div className="add-artist-div">
-          <h1> Artist: </h1>
-          <MyAutocompleteComponent
-            baseValue={"Name of Artist"}
-            value={artist}
-            setter={setArtist}
-            list={getArtists()}
-          />
-        </div>
-        <div className="add-album-div">
-          <h1> Album: </h1>
-          <MyAutocompleteComponent
-            baseValue={"Title of Album"}
-            value={album}
-            setter={setAlbum}
-            list={getAlbums()}
-          />
-        </div>
-        <div className="add-songs-div">
-          <h1> Songs: </h1>
-          {editableSongs.map((editableSong) => (
-            <div className="pb-1">{editableSong}</div>
-          ))}
-        </div>
+        <Container fluid="true">
+          <Row>
+            <Col xs={6} sm={6} md={4} lg={3} xl={3}>
+              <h1> Genre: </h1>
+              <MyAutocompleteComponent
+                baseValue={"Name of Genre"}
+                value={genre}
+                setter={setGenre}
+                list={getGenres()}
+              />
+            </Col>
+            <Col xs={6} sm={6} md={4} lg={3} xl={3}>
+              <h1> Artist: </h1>
+              <MyAutocompleteComponent
+                baseValue={"Name of Artist"}
+                value={artist}
+                setter={setArtist}
+                list={getArtists()}
+              />
+            </Col>
+            <Col xs={6} sm={6} md={4} lg={3} xl={3}>
+              <h1> Album: </h1>
+              <MyAutocompleteComponent
+                baseValue={"Title of Album"}
+                value={album}
+                setter={setAlbum}
+                list={getAlbums()}
+              />
+            </Col>
+            <Col xs={6} sm={6} md={4} lg={3} xl={3}>
+              <h1> Songs: </h1>
+              {editableSongs.map((editableSong) => (
+                <div className="pb-1">{editableSong}</div>
+              ))}
+            </Col>
+          </Row>
+        </Container>
       </div>
       <div className="buttons-div">
         <Button

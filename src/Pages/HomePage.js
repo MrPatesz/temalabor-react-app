@@ -107,7 +107,7 @@ function HomePage(props) {
   return (
     <div className="home-page">
       <Container fluid="true">
-        <Row className="justify-content-center">
+        <Row>
           <Col xs={6} sm={4} md={4} lg={2} xl={2}>
             <h1> Genres </h1>
             <GenreListComponent songAIOs={songAIOs} selectedItems={selectedItems} />

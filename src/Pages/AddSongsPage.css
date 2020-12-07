@@ -2,19 +2,3 @@
     margin-left: 10px;
     margin-right: 10px;
 }
-.add-columns-div {
-  display: flex;
-  flex-direction: row;
-}
-.add-genre-div {
-  width: 25%;
-}
-.add-artist-div {
-  width: 25%;
-}
-.add-album-div {
-  width: 25%;
-}
-.add-songs-div {
-  width: 25%;
-}
