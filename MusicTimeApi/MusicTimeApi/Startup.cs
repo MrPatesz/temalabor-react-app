@@ -25,6 +25,7 @@ namespace MusicTimeApi
 
             services.AddScoped<DAL.IArtistsRepository, DAL.ArtistsRepository>();
             services.AddScoped<DAL.IGenresRepository, DAL.GenresRepository>();
+            services.AddScoped<DAL.IAlbumsRepository, DAL.AlbumsRepository>();
 
             services.AddControllers();
 
