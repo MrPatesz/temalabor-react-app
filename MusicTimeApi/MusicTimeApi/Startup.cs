@@ -23,6 +23,9 @@ namespace MusicTimeApi
             services.AddDbContext<MusicTimeContext>(opt =>
                 opt.UseSqlServer(@"Data Source=(localdb)\mssqllocaldb;Initial Catalog=MusicTimeDB;Integrated Security=True"));
 
+            services.AddScoped<DAL.IArtistsRepository, DAL.ArtistsRepository>();
+            services.AddScoped<DAL.IGenresRepository, DAL.GenresRepository>();
+
             services.AddControllers();
 
             services.AddCors(options =>
